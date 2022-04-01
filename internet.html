@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<div>
+  <h1>internet</h1>
+  <h2> title </h2>
+  <p>here is a paragraph</p>
+  <h2> another title </h2>
+  <ul>
+   <li><a>list</a></li>
+   <li><a>list</a></li>
+   <li><a>list</a></li>
+   <li><a>list</a></li>
+  </ul>
+</div>
+
+{% for article in site.categories %}
+ <div class = "articles">
+  <a>
+   <img src = "{{site.baseurl}}{{article.img}}">
+   <p>"{{site.baseurl}}{{article.title}}"</p>
+  </a>
+ </div>
+{% endfor %}
