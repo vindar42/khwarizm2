@@ -3,7 +3,7 @@ layout: default
 ---
 <div class = "articles">
 {% for article in site.categories.algorithm %}
- <h1>{{article.title}}</h1>
+ <h1>{{site.baseurl}}{{article.title}}</h1>
 {% endfor %}
 
 </div>
