@@ -1,0 +1,101 @@
+---
+  layout: default
+  title: XML, the Internet blood
+  img: /img/xml.png
+  category: internet
+  url: /internet/2016/03/06/xml.html
+---
+
+<div class = "article">
+  <div class = "article-head">{{page.title}}</div>
+  <img src = "{{site.baseurl}}{{page.img}}" class = "article-img">
+  <div class="article-body" >
+    <p>
+    <h3>What is XML 1?</h3>
+     Extensible Markup Language (XML) is general purpose data formate. Designed in 1996 to transfer data between systems or applications.
+    <br>
+    <h3>Why XML is used instead of formal english language?</h3>
+     because it defined by document type definition (DTD) as an agreement between programmers.
+    <br>
+
+<h3>What XML use for nowadays?</h3>
+<ul>
+  <li>interfacing with SOAP system</li>
+  <li>building with ant</li>
+  <li>creating android layouts</li>
+  <li>passing messages between network systems</li>
+  <li>RSS</li>
+ </ul>
+<h3>What are other data format systems or replacements to XML?</h3>
+<ul>
+ <li>jason</li>
+ <li>yaml</li>
+</ul>
+<br>
+<h3>How create XMl in java?</h3>
+<div class="code"><p>import javax.xml.parsers.DocumentBuilderFactory;<br>
+import javax.xml.parsers.DocumentBuilder;<br>
+import javax.xml.transform.Transformer;<br>
+import javax.xml.transform.TransformerFactory;<br>
+import javax.xml.transform.dom.DOMSource;<br>
+import javax.xml.transform.stream.StreamResult;<br>
+import javax.xml.transform.OutputKeys;<br>
+import org.w3c.dom.Attr;<br>
+import org.w3c.dom.Document;<br>
+import org.w3c.dom.Element;<br>
+import java.io.File;<br>
+import java.util.Scanner;<br>
+import java.io.StringWriter;<br>
+<br>
+public class CreatXML <br>
+{ <br>
+    public static void main(String[] args){<br>
+<br>
+        try {<br>
+            File article = new File("article.txt");<br>
+            Scanner scan = new Scanner (article);<br>
+            StringBuilder str = new StringBuilder();<br>
+            while (scan.hasNext())<br>
+            { <br>
+               str.append(scan.nextLine());<br>
+               str.append("<br>");<br>
+            }<br>
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();<br>
+            DocumentBuilder builder = factory.newDocumentBuilder();<br>
+            Document doc = builder.newDocument();<br>
+<br>
+            Element body  = doc.createElement("div");<br>
+            doc.appendChild(body);<br>
+    <br>
+            Attr classAttr = doc.createAttribute("class");<br>
+            classAttr.setValue("code");<br>
+            body.setAttributeNode(classAttr);<br>
+    <br>
+            Element p = doc.createElement("p");<br>
+            p.appendChild(doc.createTextNode(str.toString()));<br>
+            body.appendChild(p);<br>
+    <br>
+            TransformerFactory transFatory = TransformerFactory.newInstance();<br>
+            Transformer transformer = transFatory.newTransformer();<br>
+            transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");<br>
+            DOMSource dom = new DOMSource(doc);<br>
+<br>
+            StringWriter writer = new StringWriter();<br>
+            StreamResult result = new StreamResult(writer);<br>
+            transformer.transform(dom, result);<br>
+            System.out.println(removeXMLTags(writer.toString()));<br>
+<br>
+        }<br>
+        catch (Exception e)<br>
+        {<br>
+            e.printStackTrace();<br>
+        }  <br>
+    }<br>
+    public static String removeXMLTags(String str){<br>
+        int index = str.indexOf(">");<br>
+        return str.substring(index+1);<br>
+    }<br>
+<br>
+}<br></p></div>
+</div>
+</div>
