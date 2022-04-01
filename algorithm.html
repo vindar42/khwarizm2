@@ -1,12 +1,21 @@
 ---
-layout: default
+ layout: default
 ---
+
 <div class = "articles">
   {% for article in site.categories.algorithm %}
+  <div class = "article-node">
     <a class = "remove-underline" href = "{{site.baseurl}}{{article.url}}">
     <div class = "article-node-img">
-      <img src= "{{site.baseurl}}{{article.img}}" class = "article-node-img"> 
-   </div>
-   </a>
+      <img src= "{{site.baseurl}}{{article.img}}" class = "article-node-img">  
+    </div>
+    <span class = "article-node-par">
+      <p style="margin:10px;">
+      {{article.title}}
+      </p>
+    </span>
+    </a>
+  </div>
   {% endfor %}
+
 </div>
