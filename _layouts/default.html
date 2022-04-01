@@ -1,15 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <title>khwarizm2</title>
   <link rel = "stylsheet" href = "css/main.css" type ="text/css">
 </head>
-
 <body>
-  <div>
- <div  class = "containers">
-  {{ content }}
- </div>
+   <div >
+   <header>
+    {% include header.html %}
+   </header>
+  
+     <div  class = "container">
+        {{content}}
+     </div>
+  
+   <footer>
+    {% include footer.html %}
+   </footer>
    </div>
-</body>
-</html>
+ </body>
