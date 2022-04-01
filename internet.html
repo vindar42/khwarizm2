@@ -15,11 +15,19 @@ layout: default
   </ul>
 </div>
 
-{% for article in site.categories %}
- <div class = "articles">
-  <a>
-   <img src = "{{site.baseurl}}{{article.img}}">
-   <p>"{{site.baseurl}}{{article.title}}"</p>
-  </a>
- </div>
-{% endfor %}
+  </div>
+  {% for article in site.categories.internet %}
+  <div class = "article-node">
+    <a class = "remove-underline" href = "{{site.baseurl}}{{article.url}}">
+    <div class = "article-node-img">
+      <img src= "{{site.baseurl}}{{article.img}}" class = "article-node-img">  
+    </div>
+    <span class = "article-node-par">
+      <p style="margin:10px;">
+      {{article.title}}
+      </p>
+    </span>
+    </a>
+  </div>
+  {% endfor %}
+</div>
