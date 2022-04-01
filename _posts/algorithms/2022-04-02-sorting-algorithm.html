@@ -10,6 +10,172 @@ category: algorithm
   <div class = "article-head">{{page.title}}</div> 
   <img src = "{{site.baseurl}}{{page.img}}" class = "article-img">
   <div class = "article-body">
-  </div>
-  </div>
+<h4>Keyworks</h4>
+  <li><b>Invariant:</b> Is a condition that must be true during some portion of the algorithm</li>
+  <li><b>Complexity:</b> Framework to Study efficiency of algoirthm for solving a particular problem</li>
+  <li><b>Inversion:</b> is a pair of Keys that are out of order in an array. let(A(1),...,A(n)) is a sequence of n items and i < j and A(i) > A(j) then pair(i,j) is what so-called inversion of A and inv(A) is the number of inversion in array A</li>
+  <li><b>stability:</b> maintaining the relative order (before sorting) of items with qual keys.</li>
+<h3>selection sort</h3>
+<h4>complexity</h4> 
+       <p> ~N^2/2|O(N^2) for both comparision and exchange</p>
+<h4>invariants</h4> 
+ <li>Entries on left of pointer are in ascending order</li>
+ <li>No Entry on right of pointer is smaller than any Entry on the left</li>
+<h4>note</h4>
+  <li>Running time is insensitive to input</li>
+  <li>is not stable sorting algorithm because of long distance exchange</li>
 
+<h4>java example</h4>
+<div class = "code">
+public static void sort(Comparable[] a)<br>
+{ 
+  int N = a.length;
+  for (int i = 0; i < N; i++)<br>
+  {
+    int min = i;
+    for (int j = i+1; j < N; j++)<br>
+      if (less(a[j], a[min])) min = j;<br>
+    exch(a, i, min);<br>
+  }<br>
+}<br>
+</div>
+
+
+<h2>Insertion sort</h2>
+<h4>complexity</h4>
+  <li>best-case: if array is ordered N-1</li>
+  <li>worst-case: if array in descending order mathematical analysis shows it has ~N^2/2|O(N^2) for both comparisions and exchange</li>
+  <li>normal-case: from mathematical analysis complexity has machine-independent time = ~N^2/4|O(N^2) for both comparisions and exchange</li>
+<h4>Invariants</h4>
+  <li>Entries on left of pointer are in ascending order</li>
+  <li>Entries on right of pointer are not yet been see</li>
+<h4>note</h4>
+  <li> partially-sorted array (nubmer of inversions <= cN |N is array length && c is constant)  take linear time in insertion sort</li>
+  <li> you can use binary search in with insertion sort to reduce the complexity to O(N^2) for comparisions and NlogN for exchange</li>
+  <li> produce stable sorting</li>
+  <div class = "code">
+public static void sort(Comparable[] a)<br>
+{<br>
+  int N = a.length;<br>
+  for(int i = 0; i < N; j++)<br>
+        for(int j = i; j > 0; j--)<br>
+                if(less(a[j], a[j-1]))<br>
+                        exch(a, j, j-1);<br>
+                else break;<br>
+}<br>
+</div>
+<h2>Shellsort</h2>
+<h4>complexity for 3x+1, 2^k +1 or 2^k -1</h4>
+  <li>best-case: NlogN for comparisions and exchange</li>
+  <li>worst-case: O(N^3/2) for both comparisions and exchange</li>
+<h4>what difference between shellsort and insertsort?</h4>
+  <p>insertion sort has trasition 1 and while shellsort has transition h | 1 <= h < N</p>
+<h4>note</h4>
+ <li> isn't stable algorithm because of long distance exchange</li>
+<div class = "code">
+public static void sort(Comparable[] a)<br>
+{<br>
+  int N = a.length;<br>
+  int h = 1;<br>
+  while(h < N/3) h = 3*N +1;<br>
+  while(h >= 1)<br>
+  {<br>
+    for(int i = h; i < N; i++)<br>
+    {<br>
+        for(int j = i; i >= h && less(a[j], a[j-h]);j -= h)<br>
+    }<br>
+    h = h/3;<br>
+  }<br>
+<br>
+}<br>
+</div>
+
+<h2>shuffle</h2>
+ <li>give each item random key and sort those keys. High coast</li>
+ <li>knuth shuffle: using incrementing pointer i  and random pointer k and swap each i with k. linear Time</li>
+<div class = "code">
+public static void shuffle(Object[] a)<br>
+{ <br>
+  int N = a.length;<br>
+  for (int i = 0; i < N; i++)<br>
+  {<br>
+      int k = StdRandom.uniform(i+1);<br>
+      each(a, i, k);<br>
+  }<br>
+}<br>
+</div>
+
+<h2>Merge sort</h2>
+<h4>note</h4>
+<li>produce stable sorting because if items are equal it add the item on the left</li>
+<div class = "code">
+public class merge<br>
+{   static Integer[] array = null;<br>
+    static Scanner scan = null;<br>
+    static ArrayList<Integer> input = null;<br>
+        public static void main(String[] args)<br>
+        {<br>
+      try{<br>
+        scan = new Scanner(new File("input.txt"));<br>
+        input = new ArrayList<Integer>();<br>
+        while(scan.hasNext())<br>
+        {<br>
+          input.add(scan.nextInt());<br>
+        }<br>
+          }catch(Exception e){e.printStackTrace();}<br>
+            scan.close();<br>
+            array = new Integer[input.size()];<br>
+            for(int i = 0; i < input.size(); i++)<br>
+            {<br>
+                array[i] = input.get(i);<br>
+            }<br>
+            sort(array);<br>
+            for(int i = 0; i < array.length; i++){<br>
+                System.out.println(array[i]+", ");<br>
+            }<br>
+<br>
+    }<br>
+    public static void sort(Comparable[] a){<br>
+        Comparable[] aux = new Comparable[a.length];<br>
+        sort(a, aux, 0, a.length - 1);<br>
+        assert (a.length-1) > 0;<br>
+    }<br>
+    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi)<br>
+    {<br>
+      if(hi <= lo) return;<br>
+      int mid = lo + (hi-lo)/2;<br>
+      sort(a, aux, lo, mid);<br>
+      sort(a, aux, mid+1, hi);<br>
+      if(less(a[mid],a[mid+1])) return;<br>
+      merge(a, aux , lo, mid, hi);<br>
+    }<br>
+    private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi)<br>
+    {<br>
+       assert isSorted(a, lo, mid):"from lo to mid isn't sorted";<br>
+       assert isSorted(a, mid+1, hi):"from mid+1 to hi isn't sorted";<br>
+       for(int i = lo; i <= hi; i++) aux[i] = a[i];<br>
+       int i = lo;<br>
+       int j = mid +1;<br>
+       for(int k = lo; k <= hi; k++)<br>
+       {<br>
+        if(i > mid)                    a[k] = aux[j++];<br>
+        else if(j > hi)                a[k] = aux[i++];<br>
+        else if(less(aux[j], aux[i]))  a[k] = aux[j++];<br>
+        else                           a[k] = aux[i++];<br>
+       }<br>
+       assert isSorted(a, lo, hi):"from lo to high isn't sorted";<br>
+    }<br>
+    public static boolean isSorted(Comparable[] a, int lo, int hi)<br>
+    {<br>
+      for(int i = lo; i < hi; i++)<br>
+        if(less(a[i],a[i-1])) return false; <br>
+      return true;<br>
+    }<br>
+    private static boolean less(Comparable lo, Comparable high)<br>
+    {<br>
+      return lo.compareTo(high) < 0;<br>
+    }<br>
+}<br>
+</div>
+</div>
+</div>
