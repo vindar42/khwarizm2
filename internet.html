@@ -1,20 +1,22 @@
 ---
-layout: default
+ layout: default
 ---
 
-<div>
-  <h1>internet</h1>
-  <h2> title </h2>
-  <p>here is a paragraph</p>
-  <h2> another title </h2>
-  <ul>
-   <li><a>list</a></li>
-   <li><a>list</a></li>
-   <li><a>list</a></li>
-   <li><a>list</a></li>
-  </ul>
-</div>
-
+<div class = "articles">
+  <div class = "subject_intro">
+    <div class = "article-head">INTERNET</div> 
+      <h3>What is this section about?</h3>
+      <p>this section for every Internet aspect. I will start from how send signals in a wire, information theory, modulation and packet switching throught history of internet and protocols to how servers works and how interact with web service. it will be long and interesting series. </p>
+      <h3>Examples of subjects I will cover</h3>
+          <li>How do signals pass in wire?</li>
+          <li>What is packets and how data transfered through-out the Internet?</li>
+          <li>How do protocols like TCP/IP and HTTP work, and used?</li>
+          <li>What is gateway, and how it works?</li>
+          <li>How do ISP connect you to internet?</li>
+          <li>What is server and How to build one?</li>
+          <li>How you make client for web services?</li>
+          <li>How broswer works?</li>
+          <li>How your content pass through the Internet?</li>
   </div>
   {% for article in site.categories.internet %}
   <div class = "article-node">
