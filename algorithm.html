@@ -5,7 +5,7 @@ layout: default
   {% for article in site.categories.algorithm %}
     <div class="article">
       <div class="image">
-        <img src="{{ article.img }}" />
+        <img src="{{site.baseurl}}{{ article.img }}">
       </div>
       <h2>{{ article.title }}</h2>
     </div>
