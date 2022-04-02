@@ -2,7 +2,6 @@
  layout: default
 ---
 
-<div class = "articles">
   {% for article in site.categories.algorithm %}
   <div class = "article-node">
     <a class = "remove-underline" href = "{{site.baseurl}}{{article.url}}">
@@ -12,7 +11,4 @@
     </a>
   </div>
   {% endfor %}
-
-</div>
-
 
